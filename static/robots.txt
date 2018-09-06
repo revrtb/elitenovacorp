@@ -1,0 +1,3 @@
+Sitemap: http://RevRTB.com/sitemap.xml
+User-agent: *
+Disallow: /templates/
