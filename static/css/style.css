@@ -14,9 +14,12 @@
 
 body {
   background: #fff;
-  font-family:'Open Sans', Arial, sans-serif;
+  /*font-family:'Open Sans', Arial, sans-serif;*/
+  font-family: Roboto,sans-serif;
   color:#333;
   line-height:1.6em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -26,7 +29,8 @@ h4,
 h5,
 h6 {
     font-weight:500; 
-    font-family:'Open Sans', Arial, sans-serif;
+    /*font-family:'Open Sans', Arial, sans-serif;*/
+    font-family: Roboto,sans-serif;
 	color:#333;
 }
 
@@ -71,7 +75,7 @@ hr {
 .btn-primary {
   padding: 8px 20px;
   background: #00cbff;
-  color: #fff;
+  color: #000;
   border-radius: 4px;
   border:none;
   margin-top: 10px;
@@ -83,6 +87,7 @@ hr {
   background: #00cbff;
   outline: none;
   box-shadow: none;
+  color: #000;
 } 
 
 .btn-transparent {
@@ -239,7 +244,8 @@ ul.social-share li a:hover {
 .navbar {
   border-radius: 0;
   margin-bottom: 0;
-  background: #151515;
+  /*background: #151515;*/
+  background-color: #000;
   padding: 15px 0;
   padding-bottom: 0;
 }
@@ -264,7 +270,7 @@ ul.social-share li a:hover {
 
 .navbar-fixed-top .navbar-nav > li > a:hover{
 	background-color: #00cbff;
-  /*color: #333;*/
+  color: #000;
 }
 
 .navbar-fixed-top {
@@ -284,7 +290,7 @@ ul.social-share li a:hover {
 .navbar-fixed-top .navbar-nav > .open > a:hover,
 .navbar-fixed-top .navbar-nav > .open > a:focus {
   background-color: #00cbff;
-  /*color: #333;*/
+  color: #000;
 }
 
 .navbar-fixed-top .navbar-nav .dropdown-menu {
@@ -314,7 +320,7 @@ ul.social-share li a:hover {
 .navbar-fixed-top .navbar-nav .dropdown-menu > li:focus > a,
 .navbar-fixed-top .navbar-nav .dropdown-menu > li.active > a {
   background-color: #00cbff;
-  color: #fff;
+  color: #000;
 }
 
 .navbar-fixed-top .navbar-nav .dropdown-menu > li:last-child > a {
@@ -521,13 +527,15 @@ ul.social-share li a:hover {
 }
 
 #about-us {
-  background: #000 url(../images/services/bg_image.jpg);
+  /*background: #000 url(../images/services/bg_image.jpg);*/
+  background-color: #000;
   background-size: cover;
   margin-top:0px;
 }
 
 #services {
-  background: #000 url(../images/services/bg_services.jpg);
+  /*background: #000 url(../images/services/bg_services.jpg);*/
+  background-color: #000;
   background-size: cover;
 }
 
@@ -700,7 +708,7 @@ ul.social-share li a:hover {
 }
 
 .panel-heading.active .panel-title>a{
-  color:#fff;
+  color:#000;
 }
 
 a.accordion-toggle  i{
@@ -715,12 +723,12 @@ a.accordion-toggle  i{
 
 .panel-heading.active a.accordion-toggle i{
   background: #00cbff;
-  color: #fff;
+  color: #000;
 }
 
 .panel-heading.active a.accordion-toggle.collapsed i{
   background: #00cbff;
-  color: #fff;
+  color: #000;
 }
 
 .nav-tabs>li{
@@ -753,14 +761,14 @@ a.accordion-toggle  i{
 
 .nav-tabs>li>a:hover{
   background: #1f1f20;
-  color:#fff;
+  color:#000;
 }
 
 .nav-tabs>li.active>a, 
 .nav-tabs>li.active>a:hover, 
 .nav-tabs>li.active>a:focus {
   border: 0;
-  color:#fff;
+  color:#000;
   background: #1f1f20;
   position: relative;
 }
@@ -1041,10 +1049,10 @@ a.accordion-toggle  i{
 
 .single-profile-top, 
 .single-profile-bottom  {
-  border: 1px solid #ddd;
+  border: 1px solid #1698d6;
   padding: 15px;
   position: relative;
-  background-color: #ffffff;
+  /*background-color: #ffffff;*/
 }
 
 .media_image {
@@ -1363,7 +1371,7 @@ ul.social_icons li  a i{
 
 .s-request h3 a{
   background:#00cbff;
-  color: #fff;
+  color: #000;
   font-size: 18px;
   font-weight: normal;
   border-radius: 3px;
@@ -1545,20 +1553,24 @@ ul.social_icons li  a i{
 
 #contact-page{
   padding-top: 0;
-  background:#fff;
+  background-color:#000;
+  height: 100vh;
 }
 
 #contact-page .contact-form 
 .form-group label {
   color: #4E4E4E;
-  font-size: 16px;
-  font-weight: 300;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .form-group .form-control {
   padding: 7px 12px;
-  border-color:#f2f2f2;
+  background-color: transparent;
   box-shadow: none;
+  border: 1px solid #000;
+  border-bottom: 1px solid #fff;
+  color:#fff;
 }
 
 textarea#message{
@@ -1567,8 +1579,6 @@ textarea#message{
 }
 
 #contact-page .contact-wrap {
-  margin-top: -10px;
-  margin-bottom: 20px;
 }
 
 /*********************
@@ -2014,7 +2024,7 @@ ul.sidebar-gallery {
     border-radius: 100%;
     line-height: 80px;
     text-align: center;
-    background: #ffffff;
+    /*background: #ffffff;*/
     color: #00cbff;
     border: 2px solid #ffffff;
     box-shadow: inset 0 0 0 5px #f2f2f2;
@@ -2093,12 +2103,14 @@ ul.sidebar-gallery {
   right: 2%;
 }
 .header-bg-2{
-    background: url(../images/slider.jpg);
+    /*background: url(../images/slider.jpg);*/
+    background-color: #000;
     background-position: center;
     background-size: cover;
 }
 .header-bg-3{
-    background: url(../images/slide1.jpg);
+    /*background: url(../images/slide1.jpg);*/
+    background-color: #000;
     background-position: center;
     background-size: cover;
 }
@@ -2127,7 +2139,8 @@ ul.sidebar-gallery {
     justify-content: center;
 }
 .header-bg{
-    background: url('../images/header-bg.png');
+    /*background: url('../images/header-bg.png');*/
+    background-color: #000;
     background-position: center;
     background-size: cover;
     object-fit: cover;
@@ -2153,7 +2166,7 @@ ul.sidebar-gallery {
     z-index: -1;
 }
 .header-section h1 {
-    font-size: 65px;
+    font-size: 50px;
     color: #fff;
     text-transform: uppercase;
     line-height: 70px;
@@ -2182,14 +2195,14 @@ ul.sidebar-gallery {
 
 
 .btn-home {
-    color:white;
+    color:#000;
     background-color: #00cbff;
     border-color: #00cbff;
 }
 
 
 .btn-home:hover {
-    color:white;
+    color:#000;
     background-color: #05aad4;
     border-color: #05aad4;
 }
@@ -2207,7 +2220,8 @@ ul.sidebar-gallery {
     margin:0 auto;
     padding:0 20px;
     box-sizing:border-box;
-    font-family:'Open Sans',serif,sans-serif;
+    /*font-family:'Open Sans',serif,sans-serif;*/
+    font-family: Roboto,sans-serif;
     font-size:36px;
     font-weight:700;
     line-height:1;
