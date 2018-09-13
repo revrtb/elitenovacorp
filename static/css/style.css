@@ -531,6 +531,7 @@ ul.social-share li a:hover {
   background-color: #000;
   background-size: cover;
   margin-top:0px;
+  height:100vh;
 }
 
 #services {
@@ -1028,8 +1029,8 @@ a.accordion-toggle  i{
 }
 
 .team {
-  margin-bottom: 120px;
-  margin-top: -120px;
+  margin-bottom: 25px;
+  margin-top: -50px;
 }
 
 .team h4 {
@@ -1356,17 +1357,35 @@ ul.social_icons li  a i{
   padding: 5px 15px;
 }
 
+.s-requests {
+    bottom: -20px;
+    left: 50%;
+    position: absolute;
+    margin-left: -130px;
+}
+
+.s-requests h3 {
+  width: 280px;
+      position: relative;
+}
+
+.s-requests h3 a{
+  background:#00cbff;
+  color: #000;
+  font-size: 18px;
+  font-weight: normal;
+  border-radius: 3px;
+  padding: 8px 20px;
+}
+
 .s-request {
-  bottom: -20px;
-  left: 50%;
-  position: absolute;
-  margin-left: -130px;
+  /*margin-top: 90px;*/
+  /*position: absolute;*/
+  margin-left: 42%;
 }
 
 .s-request h3 {
-  position: absolute;
   width: 280px;
-  position:relative;
 }
 
 .s-request h3 a{
