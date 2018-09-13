@@ -538,7 +538,7 @@ ul.social-share li a:hover {
   /*background: #000 url(../images/services/bg_services.jpg);*/
   background-color: #000;
   background-size: cover;
-  height:100vh;
+  height:100%;
 }
 
 #services .lead,
@@ -2256,6 +2256,9 @@ ul.sidebar-gallery {
     .dfl-heading{
         font-size:24px
     }
+    #services {
+    height:100%;
+  }
 }
 @media only screen and (min-width:640px) and (max-width:1024px){
     .dfl-heading{
