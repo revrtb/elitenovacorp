@@ -538,6 +538,7 @@ ul.social-share li a:hover {
   /*background: #000 url(../images/services/bg_services.jpg);*/
   background-color: #000;
   background-size: cover;
+  height:100vh;
 }
 
 #services .lead,
@@ -1574,6 +1575,11 @@ ul.social_icons li  a i{
   padding-top: 0;
   background-color:#000;
   height: 100vh;
+}
+
+#terms-page {
+  background-color: #000;
+  color:white;
 }
 
 #contact-page .contact-form 
