@@ -2295,6 +2295,12 @@ ul.sidebar-gallery {
     }
 }
 
+@media (min-width:1600px) {
+  #services {
+    padding-bottom:190px;
+  }
+}
+
 .grid .col {
     float: left;
 }
