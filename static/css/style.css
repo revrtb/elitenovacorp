@@ -12,6 +12,8 @@
 *******Typography******
 **************************/
 
+
+
 body {
   background: #fff;
   /*font-family:'Open Sans', Arial, sans-serif;*/
@@ -2141,6 +2143,15 @@ ul.sidebar-gallery {
   left: auto;
   right: 2%;
 }
+
+.owl-prev {
+  display: none !important;
+}
+
+.owl-next {
+  display: none !important;
+}
+
 .header-bg-2{
     /*background: url(../images/slider.jpg);*/
     background-color: #000;
