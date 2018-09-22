@@ -2098,6 +2098,7 @@ ul.sidebar-gallery {
   background: #fff;
   display: inline-block;
   margin: 2px;
+  border: 1px  solid #00cbff;
   -webkit-border-radius: 50%;
    -moz-border-radius: 50%;
     -ms-border-radius: 50%;
@@ -2109,7 +2110,7 @@ ul.sidebar-gallery {
   background:#00cbff;
 }
 .head-slider .owl-dots {
-     text-align: center;
+    text-align: center;
     margin-top: 20px;
     position: absolute;
     left: 49%;
@@ -2338,4 +2339,18 @@ ul.sidebar-gallery {
 
 .bottom-link a:hover {
     color: #00cbff;
+}
+
+
+@media (max-width:992px) {
+  .head-slider .owl-stage-outer .owl-stage .owl-item.active {
+    margin-left:-11% !important;
+  }
+}
+
+
+@media (max-width:425px) {
+  .head-slider .owl-stage-outer .owl-stage .owl-item.active {
+    margin-left:-14% !important;
+  }
 }
