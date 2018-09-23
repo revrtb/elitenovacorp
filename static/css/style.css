@@ -2345,6 +2345,7 @@ ul.sidebar-gallery {
 @media (max-width:992px) {
   .head-slider .owl-stage-outer .owl-stage .owl-item.active {
     margin-left:-11% !important;
+    margin-bottom: 100px;
   }
 }
 
@@ -2353,4 +2354,8 @@ ul.sidebar-gallery {
   .head-slider .owl-stage-outer .owl-stage .owl-item.active {
     margin-left:-14% !important;
   }
+}
+
+.wrapper .head-slider .owl-controls .owl-dots {
+  display: none !important;
 }
