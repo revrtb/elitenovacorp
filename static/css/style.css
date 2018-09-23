@@ -2279,9 +2279,9 @@ ul.sidebar-gallery {
     margin-top:30px;
 }
 @media only screen and (max-width:639px){
-    .dfl-heading{
+    /*.dfl-heading{
         font-size:24px
-    }
+    }*/
     #services {
     height:100%;
   }
@@ -2358,4 +2358,8 @@ ul.sidebar-gallery {
 
 .wrapper .head-slider .owl-controls .owl-dots {
   display: none !important;
+}
+
+.wrapper .slider {
+  margin-top: 0px;
 }
