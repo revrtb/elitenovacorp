@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, flash, redirect, url_for, sen
 from forms import ContactForm, SignUpForm
 from flask_mail import Message, Mail
 # from flaskext.mysql import MySQL
+
 # from flask_mysqldb import MySQL
 from flask import jsonify
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
