@@ -19,6 +19,8 @@ class DevelopmentConfig(Config):
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'support@revrtb.com'
     MAIL_PASSWORD = ''
+    RECAPTCHA_PUBLIC_KEY=''
+    RECAPTCHA_PRIVATE_KEY=''
 
 class MailData():
 	FROM = 'support@revrtb.com'

@@ -17,6 +17,8 @@ application = Flask(__name__)
 application.config.from_object('appconfig.DevelopmentConfig')
 application.config.update(
     MAIL_PASSWORD=os.environ['MAIL_PASS']
+    RECAPTCHA_PUBLIC_KEY=os.environ['RECAPTCHA_PUBLIC_KEY']
+    RECAPTCHA_PRIVATE_KEY=os.environ['RECAPTCHA_PRIVATE_KEY']
 )
 
 mail = Mail()
