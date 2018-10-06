@@ -2349,16 +2349,16 @@ ul.sidebar-gallery {
 
 
 @media (max-width:992px) {
-  .head-slider .owl-stage-outer .owl-stage .owl-item.active {
-    margin-left:-11% !important;
+  .bottom_slider {
+    margin-left:30% !important;
     margin-bottom: 100px;
   }
 }
 
 
 @media (max-width:425px) {
-  .head-slider .owl-stage-outer .owl-stage .owl-item.active {
-    margin-left:-14% !important;
+  .bottom_slider {
+    margin-left:18% !important;
   }
 }
 
