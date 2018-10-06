@@ -1580,6 +1580,12 @@ ul.social_icons li  a i{
   height: 100vh;
 }
 
+#signup-page{
+  padding-top: 0;
+  background-color:#000;
+  height: 115vh;
+}
+
 #terms-page {
   background-color: #000;
   color:white;
@@ -2363,3 +2369,4 @@ ul.sidebar-gallery {
 .wrapper .slider {
   margin-top: 0px;
 }
+

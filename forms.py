@@ -20,3 +20,4 @@ class SignUpForm(FlaskForm):
   repassword = PasswordField("Repassword",  [validators.Required()])
   account_type = SelectField("AccountType", choices = [('adv', 'Advertiser'), ('pub', 'Publisher')])
   submit = SubmitField("Send")
+  recaptcha = RecaptchaField()
