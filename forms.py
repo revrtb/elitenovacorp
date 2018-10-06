@@ -1,4 +1,4 @@
-from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm, RecaptchaField
 from wtforms.fields import TextField, TextAreaField, SubmitField, SelectField, PasswordField
 from wtforms import validators, ValidationError
  
@@ -8,6 +8,7 @@ class ContactForm(FlaskForm):
   subject = TextField("Subject",  [validators.Required()])
   message = TextAreaField("Message",  [validators.Required()])
   submit = SubmitField("Send")
+  recaptcha = RecaptchaField()
 
 class SignUpForm(FlaskForm):
   fname = TextField("FirstName",  [validators.Required()])
