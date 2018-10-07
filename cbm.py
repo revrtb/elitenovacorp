@@ -209,7 +209,7 @@ def contact():
         else:
             msg = Message(form.subject.data, sender=appconfig.MailData.FROM, recipients=appconfig.MailData.TO)
             msg.body = ""
-            msg.html = render_template('contact_email.html', name=form.name.data, subject=form.subject.data, message=form.message.data, email=form.email.data)
+            msg.html = render_template('contact_email.html', name=form.name.data, subject=form.subject.data, website=form.website.data, message=form.message.data, email=form.email.data)
             try:
             	mail.send(msg)
             	return render_template('contact-us.html', success=True, page="contact")
@@ -231,7 +231,7 @@ def signup():
         else:
             msg = Message('Sign up request', sender=appconfig.MailData.FROM, recipients=appconfig.MailData.TO)
             msg.body = ""
-            msg.html = render_template('signup_email.html', fname=form.fname.data, lname=form.lname.data, skype=form.skype.data, username=form.username.data, \
+            msg.html = render_template('signup_email.html', fname=form.fname.data, lname=form.lname.data, skype=form.skype.data, website=form.website.data, username=form.username.data, \
                 email=form.email.data, password=form.password.data, repassword=form.repassword.data, account_type=form.account_type.data)
             try:
                 mail.send(msg)

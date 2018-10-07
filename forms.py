@@ -7,6 +7,7 @@ class ContactForm(FlaskForm):
   email = TextField("Email",  [validators.Required()])
   subject = TextField("Subject",  [validators.Required()])
   message = TextAreaField("Message",  [validators.Required()])
+  website = TextField("website")
   submit = SubmitField("Send")
   recaptcha = RecaptchaField()
 
@@ -14,6 +15,7 @@ class SignUpForm(FlaskForm):
   fname = TextField("FirstName",  [validators.Required()])
   lname = TextField("LastName",  [validators.Required()])
   skype = TextField("Skype",  [validators.Required()])
+  website = TextField("website", [validators.Required()])
   username = TextField("Username",  [validators.Required()])
   email = TextField("Email",  [validators.Required()])
   password = PasswordField("Password",  [validators.DataRequired(), validators.EqualTo('repassword', message='Passwords must match')])
