@@ -1,0 +1,355 @@
+/*@import url('https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i');*/
+
+/****** Reset ******/
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,input {
+	font-family:"Raleway", Arial, Tahoma, sans-serif !important;
+	margin: 0;
+	/*padding: 0;*/
+	border: 0;
+	outline: 0;
+	vertical-align: baseline;
+	color:#fff;
+/*	background: transparent;*/
+}
+
+ol,ul{list-style:none;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content: none;}
+:focus{outline:0;}
+ins{text-decoration: none;}
+del{text-decoration: line-through;}
+table{border-collapse:collapse;border-spacing:0;}
+
+/****** basic styles *******/
+
+h1,h2,h3,h4,h5,h6 {
+	text-align:center;
+	text-transform:uppercase !important;
+	font-weight: bold;
+}
+
+a{color:#2c2c2c;text-decoration:none;}
+a:hover{text-decoration:none;}
+
+body {
+	background-color: #000;
+}
+
+.container {
+	margin: 0 auto 0 auto;
+	background-color: #000;
+	overflow: hidden;
+	max-width:800px;
+}
+
+
+
+/***************************/
+/*       main page             
+/***************************/
+#topHeader {
+	overflow: hidden;
+	padding-bottom: 30px;
+}
+
+#topLogo {
+	float: left;
+	margin: 23px 0 0 25px;
+	font-weight: bold;
+	width: 560px;
+}
+
+#topLogo a {
+	color: #4a0000;
+}
+
+#topLogo a:hover {
+	text-decoration: none;
+}
+
+#topLogo .icoLogo {
+	float: left;
+	margin-left:80px;
+}
+
+#topLogo .icoLogo > img {
+	width:160px;
+	height: 120px;
+}
+
+#topLogo .logoTitle {
+	margin: 4px 0 2px 42px;
+	text-transform: uppercase;
+	display: block;
+}
+
+#topLogo .logoSubtitle {
+	display: block;
+	margin: 0 0 0 42px;
+	font-weight: normal;
+}
+
+#topSubNav {
+	float: right;
+	padding: 25px 30px 0 0;
+	margin-top: 24px;
+}
+
+#topSubNav a {
+	display: block;
+	float: left;
+	color: #fff;
+	background-color: #4a0000;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	line-height: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#topSubNav a:hover {
+	background-color: #6e0000;
+	text-decoration: none;
+}
+
+#mainNav {display:none !important;}
+#promoBlock {display:none !important;}
+
+#mainContent {
+	min-height: 500px;
+	overflow: hidden;
+	padding: 10px 10px 0 40px;
+	font-size:0.75em;
+	margin-bottom:50px;
+}
+
+.colContainer {
+	border: 1px solid #e3e3e3;
+	border-left: none;
+	border-right: none;
+	margin: 15px;
+	padding: 20px 0 20px 0;
+}
+
+#mainContent p {
+	line-height: 1.5;
+}
+
+.colHeader {
+	min-height: 70px;
+	padding-bottom: 10px;
+}
+
+#mainContentLeftCol ul, #mainContentRightCol ul {
+	min-height: 270px;
+}
+
+#mainContentLeftCol li, #mainContentRightCol li {
+	margin: 0 0 9px 0;
+	padding-left: 17px;
+}
+
+#mainContentLeftCol ul ul {
+	min-height: 0;
+}
+
+#mainContentLeftCol li li {
+	margin: 9px 0 9px 0;
+}
+
+#mainContentLeftCol {
+	float: left;
+	width: 50%;
+}
+
+#mainContentRightCol {
+	float: right;
+	width: 50%;
+}
+
+a.btn {
+	display: block;
+	height: 60px;
+	width: 250px;
+	line-height: 60px;
+	margin:0px auto;
+	text-align: center;
+	background-color:#00cbff;
+	color:#fff;
+	font-size: 16px;
+}
+
+a.btn:hover{text-decoration: none;}
+
+a.publisher {
+	background-position: right 0 !important;
+}
+
+a.publisher:hover {
+	background-position: right -68px !important;
+}
+
+#bottomFooter {display:none !important;}
+
+/***************************/
+/*       inner page             
+/***************************/
+#innerContent {
+	padding: 25px;
+	border:#fff 2px solid;
+}
+
+#stdForm label {
+	display: inline-block;
+	margin:0.2em 0px;
+}
+
+#stdForm div {
+	margin: 0 0 15px 0;
+}
+
+#stdForm span {
+	margin-right: 15px;
+}
+
+#stdForm span a {
+	text-decoration: underline;
+}
+
+#stdForm a {
+	padding-left:0px !important;
+	color: rgb(0, 203, 255); 
+}
+
+#stdForm input[type="text"],#stdForm input[type="password"] {
+	padding: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	border: 1px solid #bbb;
+	width:95%;
+	font-size:1.3em;
+	color: rgb(0, 203, 255); 
+}
+
+#stdForm input[type="checkbox"] {
+	border: 1px solid #bbb;
+	border-radius: 2px;
+	-moz-border-radius: 2px;
+	width: 14px;
+	height: 14px;
+}
+
+#stdForm select {
+	padding: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	border: 1px solid #bbb;
+	width: 95%;
+	font-size: 1.1em;
+}
+
+#stdForm textarea {
+	padding: 4px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	border: 1px solid #bbb;
+	width: 100%;
+}
+
+#stdForm input:focus,#stdForm select:focus,#stdForm textarea:focus,#stdForm checkbox:focus
+	{
+	border-color: #777 !important;
+}
+
+#stdForm .capcha img {
+
+}
+
+#stdForm .capcha span {
+	display: block;
+	padding: 15px 0;
+}
+
+#stdForm .capcha input[type="text"] {
+
+}
+
+#stdForm input[type="submit"] {
+	width: 100%;
+	font-weight: bold;
+	line-height:2.5em;
+	background:#00cbff;
+	height:2.5em;
+	display:block;
+	-webkit-appearance:button;
+	font-size:1.3em;
+	text-transform: uppercase;
+}
+
+#stdForm {
+	margin:0px auto !important;
+	padding: 30px;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+.errorMessage,.fieldError {
+	color: red;
+	text-align: left;
+	font-weight: bold !important;
+	padding: 0 !important;
+}
+
+
+.fieldError {
+	display: block;
+}
+
+.gwt-HintMark {
+	vertical-align: super;
+	cursor: pointer;
+	font-size: smaller !important;
+}
+
+.necessarilyField {
+	color: red;
+	vertical-align: baseline;
+	margin: 0 0 0 2px  !important;
+	display: inline !important;
+
+}
+
+
+#topLogo .logoTitle , #topLogo .logoSubtitle {
+	display:none;
+}
+
+#topSubNav a {
+	background-color:#00cbff;
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+#topSubNav a:hover {
+	background-color:#4e84ba;
+}
+
+
+#promoContent h2 {
+	color:#22293b;
+}
+
+#mainNav{
+	margin-top: 0px;
+}
+
+#topSubNav a {
+	float:none;
+	margin-bottom:10px;
+}
+
+#topSubNav{
+	padding-top: 25px;
+}
