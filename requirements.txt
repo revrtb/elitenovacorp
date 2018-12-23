@@ -3,7 +3,7 @@ flask_wtf
 wtforms
 flask_mail
 flask
-MySQL-python
+mysql-connector-python
 passlib
 bcrypt
 flask_login

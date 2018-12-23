@@ -1,6 +1,6 @@
 
 from passlib.hash import bcrypt
-import MySQLdb
+import mysql.connector
 import appconfig
 import os
 
@@ -15,7 +15,7 @@ class DB:
 			pswd=os.environ['DBPSWD']
 			db=os.environ['DB']
 			if self.connection == None:
-				self.connection = MySQLdb.connect(host=host, user=user, passwd=pswd, db=db, port=port)
+				self.connection = mysql.connector.connect(host=host, user=user, password=pswd, database=db, port=port)
 		except Exception as e:
 			print "MySQLError %s" % (e.message)
 
@@ -33,7 +33,7 @@ class DB:
 				user=os.environ['DBUSER']
 				pswd=os.environ['DBPSWD']
 				db=os.environ['DB']
-				args[0].connection = MySQLdb.connect(host=host, user=user, passwd=pswd, db=db, port=port)
+				args[0].connection = mysql.connector.connect(host=host, user=user, passwd=pswd, db=db, port=port)
 			return func(*args, **kwargs)
 		return wrap_func
 
