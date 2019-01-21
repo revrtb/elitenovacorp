@@ -45,7 +45,7 @@ def index():
     return render_template('index.html', page='home')
 
 @application.route('/google76d353eef6dd1d9c.html')
-def index():
+def gv():
     return render_template('google76d353eef6dd1d9c.html')
 
 @application.route('/home')
