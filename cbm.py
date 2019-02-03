@@ -140,11 +140,12 @@ def save_publisher():
         max = request.form.get('max')
         period = request.form.get('period')
         default_url = request.form.get('default_url', '')
+        email = request.form.get('email', '')
         id = request.form.get('id', 0)
         if id == 0:
-            status = dbo.add_publisher(name, subid, feedid, feedauth, delay, max, period, default_url)
+            status = dbo.add_publisher(name, subid, feedid, feedauth, delay, max, period, default_url, email)
         else:
-            status = dbo.update_publisher(id, name, subid, feedid, feedauth, delay, max, period, default_url)
+            status = dbo.update_publisher(id, name, subid, feedid, feedauth, delay, max, period, default_url, email)
         return jsonify({'data': status})
     except Exception as e:
         return jsonify({'data': e.message})
@@ -158,6 +159,25 @@ def delete_publisher():
         return jsonify({'data': status})
     except Exception as e:
         return jsonify({'data': e.message})        
+
+@application.route('/notify_publisher', methods=['POST'])
+@login_required
+def notify_publisher():
+    try:
+        html_code = request.form.get('html_code')
+        email = request.form.get('email')
+        direct_url = request.form.get('direct_url')
+        feed_url = request.form.get('feed_url')
+        id = request.form.get('id')
+        domain = "revrtb.com"
+        msg = Message('%s - New codes'%(domain), sender=appconfig.MailData.FROM, recipients=[email])
+        msg.body = ""
+        msg.html = render_template('notify_email.html', domain=domain, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
+        mail.send(msg)
+        status = dbo.update_publisher_dt(id)
+        return jsonify({'data': status})
+    except Exception as e:
+        return jsonify({'data': e.message})
 
 @application.route("/dashboardLogout")
 @login_required
