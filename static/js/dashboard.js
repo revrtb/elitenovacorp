@@ -103,6 +103,7 @@ $(function() {
             data: {
                     'html_code': '<script type="text/javascript" src="https://www.revrtb.com/cbmpop?id='+tr.id+'"></script>',
                     'direct_url': $(tr).attr('url'),
+                    'pub_name': $(tr).attr('pub_name'),
                     'feed_url': $(tr).attr('feed_url'),
                     'email': $(tr).attr('email'),
                     'id': tr.id

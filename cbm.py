@@ -165,6 +165,7 @@ def delete_publisher():
 def notify_publisher():
     try:
         html_code = request.form.get('html_code')
+        pub_name = request.form.get('pub_name')
         email = request.form.get('email')
         direct_url = request.form.get('direct_url')
         feed_url = request.form.get('feed_url')
@@ -172,7 +173,7 @@ def notify_publisher():
         domain = "revrtb.com"
         msg = Message('%s - New codes'%(domain), sender=appconfig.MailData.FROM, recipients=[email])
         msg.body = ""
-        msg.html = render_template('notify_email.html', domain=domain, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
+        msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
         mail.send(msg)
         status = dbo.update_publisher_dt(id)
         return jsonify({'data': status})
