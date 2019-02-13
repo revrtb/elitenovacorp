@@ -1,14 +1,16 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, send_from_directory
 from forms import ContactForm, SignUpForm
-from flask_mail import Message, Mail
+from flask_mail import Message
 # from flaskext.mysql import MySQL
 
 # from flask_mysqldb import MySQL
 from flask import jsonify
+import json
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 import appconfig
 from lib import db
 from lib import user
+from lib import email
 import os
 
 ### APPLICATIO  SETUP ###
@@ -21,9 +23,9 @@ application.config.update(
     RECAPTCHA_PRIVATE_KEY=os.environ['RECAPTCHA_PRIVATE_KEY']
     )
 
-mail = Mail()
+mail = email.aMail()
 
-mail.init_app(application)
+mail.initApp(application)
 
 
 # application.config['MYSQL_DATABASE_USER'] = appconfig.MYSQLDB.USER
@@ -170,12 +172,38 @@ def notify_publisher():
         direct_url = request.form.get('direct_url')
         feed_url = request.form.get('feed_url')
         id = request.form.get('id')
-        domain = "revrtb.com"
+        domain = appconfig.Domain.DOMAIN
         msg = Message('%s - New codes'%(domain), sender=appconfig.MailData.FROM, recipients=[email])
         msg.body = ""
         msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
-        mail.send(msg)
-        status = dbo.update_publisher_dt(id)
+        mail.send_email(msg)
+        status = dbo.update_publisher_dt([id])
+        return jsonify({'data': status})
+    except Exception as e:
+        return jsonify({'data': e.message})
+
+@application.route('/notify_all', methods=['POST'])
+@login_required
+def notify_all():
+    try:
+        pubs = request.form.get('pubs')
+        ps = json.loads(pubs)
+        domain = appconfig.Domain.DOMAIN
+        status = True
+        ids = []
+        for p in ps:
+            if p['email'] != '':
+                ids.append(p['id'])
+                pub_name = p['pub_name']
+                email = p['email']
+                feed_url = p['feed_url']
+                direct_url = p['direct_url']
+                html_code = p['html_code']
+                msg = Message('%s - New codes'%(domain), sender=appconfig.MailData.FROM, recipients=[email])
+                msg.body = ""
+                msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
+                mail.send_email(msg)
+        status = dbo.update_publisher_dt(ids)
         return jsonify({'data': status})
     except Exception as e:
         return jsonify({'data': e.message})

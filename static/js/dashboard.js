@@ -1,13 +1,13 @@
 $(function() {
 
 
-    $(document).ready(function () {
-        $(document).ajaxStart(function () {
-            $("#loading").show();
-        }).ajaxStop(function () {
-            $("#loading").hide();
-        });
-    });
+    // $(document).ready(function () {
+    //     $(document).ajaxStart(function () {
+    //         $("#loading").show();
+    //     }).ajaxStop(function () {
+    //         $("#loading").hide();
+    //     });
+    // });
 
     $('#btnLogin').click(function() {
  
@@ -107,6 +107,38 @@ $(function() {
                     'feed_url': $(tr).attr('feed_url'),
                     'email': $(tr).attr('email'),
                     'id': tr.id
+                  },
+            type: 'POST',
+            success: function(response) {
+                data = response['data'];
+                if (data) {
+                    location.reload();
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        
+     });
+
+    $('.sendAll').click(function(event) {
+        var lobj = [];
+        $('#ptable > tbody  > tr').each(function(item) {
+            var obj=Object();
+            obj['direct_url'] = $(this).attr('url');
+            obj['html_code'] = '<script type="text/javascript" src="https://www.revrtb.com/cbmpop?id='+$(this).attr('id')+'"></script>';
+            obj['id'] = $(this).attr('id');
+            obj['feed_url'] = $(this).attr('feed_url');
+            obj['email'] = $(this).attr('email');
+            obj['pub_name'] = $(this).attr('pub_name');
+            lobj.push(obj);
+        });
+
+        $.ajax({
+            url: '/notify_all',
+            data: {
+                    'pubs': JSON.stringify(lobj)
                   },
             type: 'POST',
             success: function(response) {

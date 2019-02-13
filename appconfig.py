@@ -27,6 +27,9 @@ class MailData():
 	FROM = 'support@revrtb.com'
 	TO = ['support@revrtb.com']
 
+class Domain():
+    DOMAIN = "revrtb.com"
+
 class MYSQLDB():
     USER = 'root'
     PASSWORD = ''

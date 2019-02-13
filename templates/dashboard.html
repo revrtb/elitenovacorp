@@ -65,7 +65,7 @@ form {
         <div class="row">
             <div class="col-1">
             </div>
-            <table class="table table-hover">
+            <table class="table table-hover" id="ptable">
                 <thead>
                     <tr>
                     {% for col in fields %}
@@ -75,7 +75,7 @@ form {
                           <th>{{ col }}</th>
                         {% endif %}
                     {% endfor %}
-                    <th>send</th>
+                    <th><button class="btn btn-small btn-danger sendAll">Send all</button></th>
                     <th>edit</th>
                     <th>delete</th>
                     </tr>

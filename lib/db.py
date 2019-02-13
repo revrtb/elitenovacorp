@@ -144,10 +144,11 @@ class DB:
 			return e.message
 
 	@check_connection
-	def update_publisher_dt(self, id):
+	def update_publisher_dt(self, ids):
 		try:
 			cursor = self.connection.cursor()
-			sql = 'UPDATE publishers set date_time=NOW() where feedid=%s;' % (id)
+			idss = ','.join(ids)
+			sql = 'UPDATE publishers set date_time=NOW() where feedid in (%s);' % (idss)
 			cursor.execute(sql)
 			cursor.close() 
 			self.connection.commit()
