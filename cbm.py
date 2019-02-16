@@ -173,7 +173,7 @@ def notify_publisher():
         feed_url = request.form.get('feed_url')
         id = request.form.get('id')
         domain = appconfig.Domain.DOMAIN
-        msg = Message('%s - %s - New codes'%(domain, pub_name), sender=appconfig.MailData.FROM, recipients=[email])
+        msg = Message('%s (new adserving domain code) - %s'%(domain, pub_name), sender=appconfig.MailData.FROM, recipients=[email])
         msg.body = ""
         msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
         mail.send_email(msg)
@@ -199,7 +199,7 @@ def notify_all():
                 feed_url = p['feed_url']
                 direct_url = p['direct_url']
                 html_code = p['html_code']
-                msg = Message('%s - %s - New codes'%(domain, pub_name), sender=appconfig.MailData.FROM, recipients=[email])
+                msg = Message('%s (new adserving domain code) - %s'%(domain, pub_name), sender=appconfig.MailData.FROM, recipients=[email])
                 msg.body = ""
                 msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
                 mail.send_email(msg)
