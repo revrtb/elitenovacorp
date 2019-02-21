@@ -143,11 +143,12 @@ def save_publisher():
         period = request.form.get('period')
         default_url = request.form.get('default_url', '')
         email = request.form.get('email', '')
+        short_link = request.form.get('short_link', '')
         id = request.form.get('id', 0)
         if id == 0:
-            status = dbo.add_publisher(name, subid, feedid, feedauth, delay, max, period, default_url, email)
+            status = dbo.add_publisher(name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link)
         else:
-            status = dbo.update_publisher(id, name, subid, feedid, feedauth, delay, max, period, default_url, email)
+            status = dbo.update_publisher(id, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link)
         return jsonify({'data': status})
     except Exception as e:
         return jsonify({'data': e.message})

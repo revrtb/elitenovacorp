@@ -68,10 +68,11 @@ form {
             <table class="table table-hover" id="ptable">
                 <thead>
                     <tr>
+                    <th>No</th>
                     {% for col in fields %}
                         {% if col == 'subid' %}
                           <th>pubid</th>
-                        {% elif col != "date_time" %}
+                        {% elif col != "date_time" and col != "id" %}
                           <th>{{ col }}</th>
                         {% endif %}
                     {% endfor %}
@@ -83,7 +84,8 @@ form {
                 <tbody>
                 {% for row in publishers|reverse %}
                     <tr id="{{ row[3] }}" class="dataRow" url="https://xml.revrtb.com/redirect?feed={{row[3]}}&auth={{row[4]}}&pubid={{row[2]}}" feed_url="https://xml.revrtb.com/redirect?feed={{row[3]}}&auth={{row[4]}}&subid={subid}&ua={ua}&url={url}&user_ip={user_ip}&query={query}&count={count}" dt="{{row[10]}}" email="{{row[9]}}" pub_name="{{ row[1] }}">
-                        {% for d in row[0:10] %}
+                        <td> {{loop.length - loop.index + 1}} </td>
+                        {% for d in row[1:11] %}
                             {% if d == None or  d == '' %}
                                 <td> -- </td>
                             {% else %}
@@ -170,6 +172,7 @@ form {
           <label for="period">Period(h): </label><input type="text" id="period" name="period" value="" class="form-control">
           <label for="def_url">Def URL: </label><input type="text" id="def_url" name="def_url" value="" class="form-control">
           <label for="email">Email: </label><input type="text" id="email" name="email" value="" class="form-control">
+          <label for="ZAP">ZAP: </label><input type="text" id="short_link" name="short_link" value="" class="form-control">
           <input type="text" id="id" name="id" value="" class="form-control" style="display:none">
           <!-- rest of form -->
         </form>

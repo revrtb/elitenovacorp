@@ -59,6 +59,7 @@ $(function() {
                 $('#period').val(data[7]);
                 $('#def_url').val(data[8]);
                 $('#email').val(data[9]);
+                $('#short_link').val(data[10]);
                }
                $('#headerText').text('Edit publisher info');
                $('#editModal').modal('toggle');
@@ -164,6 +165,7 @@ $(function() {
                 $('#period').val('');
                 $('#def_url').val('');
                 $('#email').val('');
+                $('#short_link').val('');
                 $('#id').val('');
                 $('#headerText').text('Create new publisher');
         $('#editModal').modal('toggle');
@@ -179,15 +181,16 @@ $(function() {
                     'max' : $('#max').val(),
                     'period' : $('#period').val(),
                     'default_url' : $('#def_url').val(),
-                    'email' : $('#email').val()
+                    'email' : $('#email').val(),
+                    'short_link' : $('#short_link').val()
                 }
         var id = $('#id').val();
         if (id != '') {
             data['id'] = id;
         }
         for (var f in data) {
-            if (f != 'default_url' && f != 'email' && data[f] == '') {
-                alert('All fields are required except "Def URL" and "Email"');
+            if (f != 'default_url' && f != 'email' && f != 'short_link' && data[f] == '') {
+                alert('All fields are required except "Def URL" and "Email" and "Short Url"');
                 return false;
             }
         }

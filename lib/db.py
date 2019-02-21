@@ -58,7 +58,7 @@ class DB:
 		try:
 			cursor = self.connection.cursor()
 
-			cursor.execute("SELECT id, name, subid, feedid, feedauth, delay, max, period, default_url, email, date_time from publishers")
+			cursor.execute("SELECT id, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link, date_time  from publishers")
 			columns = [i[0] for i in cursor.description]
 			data = cursor.fetchall()
 			cursor.close() 
@@ -120,10 +120,10 @@ class DB:
 			return {'error': e.message}
 
 	@check_connection
-	def add_publisher(self, name, subid, feedid, feedauth, delay, max, period, default_url, email):
+	def add_publisher(self, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link):
 		try:
 			cursor = self.connection.cursor()
-			sql = 'INSERT into publishers (name, subid, feedid, feedauth, delay, max, period, default_url, email) values ("%s", %s, %s, "%s", %s, %s, %s, "%s", "%s");' % (name, subid, feedid, feedauth, delay, max, period, default_url, email)
+			sql = 'INSERT into publishers (name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link) values ("%s", %s, %s, "%s", %s, %s, %s, "%s", "%s", "%s");' % (name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link)
 			cursor.execute(sql)
 			cursor.close() 
 			self.connection.commit()
@@ -132,10 +132,10 @@ class DB:
 			return e.message
 
 	@check_connection
-	def update_publisher(self, id, name, subid, feedid, feedauth, delay, max, period, default_url, email):
+	def update_publisher(self, id, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link):
 		try:
 			cursor = self.connection.cursor()
-			sql = 'UPDATE publishers set name="%s", subid=%s, feedid=%s, feedauth="%s", delay=%s, max=%s, period=%s, default_url="%s", email="%s" where id=%s ;' % (name, subid, feedid, feedauth, delay, max, period, default_url, email, id)
+			sql = 'UPDATE publishers set name="%s", subid=%s, feedid=%s, feedauth="%s", delay=%s, max=%s, period=%s, default_url="%s", email="%s", short_link="%s" where id=%s ;' % (name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link, id)
 			cursor.execute(sql)
 			cursor.close() 
 			self.connection.commit()
