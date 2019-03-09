@@ -193,7 +193,7 @@ def notify_all():
         status = True
         ids = []
         for p in ps:
-            if p['email'] != '':
+            if  p['email'] != '' and p['email'] != 'None':
                 ids.append(p['id'])
                 pub_name = p['pub_name']
                 email = p['email']
