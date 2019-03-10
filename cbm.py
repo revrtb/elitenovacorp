@@ -23,6 +23,8 @@ application.config.update(
     RECAPTCHA_PRIVATE_KEY=os.environ['RECAPTCHA_PRIVATE_KEY']
     )
 
+appconfig.Domain.DOMAIN = os.environ['DOMAIN']
+
 mail = email.aMail()
 
 mail.initApp(application)
@@ -44,7 +46,7 @@ login_manager.init_app(application)
 
 @application.route('/')
 def index():
-    return render_template('index.html', page='home')
+    return render_template('index.html', page='home', domain=appconfig.Domain.DOMAIN)
 
 @application.route('/google76d353eef6dd1d9c.html')
 def gv():
@@ -60,7 +62,7 @@ def test():
 
 @application.route('/policy')
 def policy():
-	return render_template('policy.html', page='policy')
+	return render_template('policy.html', page='policy', domain=appconfig.Domain.DOMAIN)
 
 @application.route('/admin')
 def admin_login():
@@ -68,7 +70,7 @@ def admin_login():
 
 @application.route('/terms')
 def terms():
-    return render_template('terms.html', page='terms')
+    return render_template('terms.html', page='terms', domain=appconfig.Domain.DOMAIN)
 
 @application.route('/advertisers')
 def advertisers():
@@ -122,7 +124,7 @@ def dashboard():
         login_user(usero)
 
         info, data = dbo.get_publishers()
-        return render_template('dashboard.html', page='dashboard', publishers=data, fields=info, count=len(data))
+        return render_template('dashboard.html', page='dashboard', publishers=data, fields=info, count=len(data), domain=appconfig.Domain.DOMAIN)
         
 @application.route('/get_publisher', methods=['POST'])
 @login_required
@@ -236,7 +238,7 @@ def cbmpop():
             feed = data[3]
             auth = data[4]
             subid = data[2]
-            url="https://xml.revrtb.com/redirect?feed=%s&auth=%s&pubid=%s&url=" % (str(feed), auth, subid)
+            url="https://xml.%s/redirect?feed=%s&auth=%s&pubid=%s&url=" % (str(appconfig.Domain.Domain), str(feed), auth, subid)
 
         return render_template('pop_templatex.js', PAR_TRGURL=url, PAR_DELAY=delay, PAR_MAX=max, PAR_DUR=dur, PAR_DEFURL=default_url)
     except Exception as e:

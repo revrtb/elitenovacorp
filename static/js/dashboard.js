@@ -26,7 +26,8 @@ $(function() {
 
     $('tbody tr').click(function(event) {
         tr = event.target.closest('tr');
-        $('#modal_text').text('<script type="text/javascript" src="https://www.revrtb.com/cbmpop?id='+tr.id+'"></script>');
+        var domain=$(tr).attr('domain');
+        $('#modal_text').text('<script type="text/javascript" src="https://www.'+domain+'/cbmpop?id='+tr.id+'"></script>');
         $('#modal_url').text($(tr).attr('url'));
         $('#modal_feed_url').text($(tr).attr('feed_url'));
         var dt_val = "--"
@@ -95,6 +96,7 @@ $(function() {
     $('.sendItem').click(function(event) {
         tr = event.target.closest('tr');
         event.stopPropagation();
+        var domain=$(tr).attr('domain');
 
         if ($(tr).attr('email') == '' || $(tr).attr('email') == undefined) {
             alert("Email is not set");
@@ -102,7 +104,7 @@ $(function() {
         $.ajax({
             url: '/notify_publisher',
             data: {
-                    'html_code': '<script type="text/javascript" src="https://www.revrtb.com/cbmpop?id='+tr.id+'"></script>',
+                    'html_code': '<script type="text/javascript" src="https://www.'+domain+'/cbmpop?id='+tr.id+'"></script>',
                     'direct_url': $(tr).attr('url'),
                     'pub_name': $(tr).attr('pub_name'),
                     'feed_url': $(tr).attr('feed_url'),
@@ -127,8 +129,9 @@ $(function() {
         var lobj = [];
         $('#ptable > tbody  > tr').each(function(item) {
             var obj=Object();
+            var domain=$(this).attr('domain');
             obj['direct_url'] = $(this).attr('url');
-            obj['html_code'] = '<script type="text/javascript" src="https://www.revrtb.com/cbmpop?id='+$(this).attr('id')+'"></script>';
+            obj['html_code'] = '<script type="text/javascript" src="https://www.'+domain+'/cbmpop?id='+$(this).attr('id')+'"></script>';
             obj['id'] = $(this).attr('id');
             obj['feed_url'] = $(this).attr('feed_url');
             obj['email'] = $(this).attr('email');

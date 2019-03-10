@@ -28,7 +28,7 @@ class MailData():
 	TO = ['support@revrtb.com']
 
 class Domain():
-    DOMAIN = "revrtb.com"
+    DOMAIN = ""
 
 class MYSQLDB():
     USER = 'root'

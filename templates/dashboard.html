@@ -83,7 +83,7 @@ form {
                 </thead>
                 <tbody>
                 {% for row in publishers|reverse %}
-                    <tr id="{{ row[3] }}" class="dataRow" url="https://xml.revrtb.com/redirect?feed={{row[3]}}&auth={{row[4]}}&pubid={{row[2]}}" feed_url="https://xml.revrtb.com/redirect?feed={{row[3]}}&auth={{row[4]}}&subid={subid}&ua={ua}&url={url}&user_ip={user_ip}&query={query}&count={count}" dt="{{row[11]}}" email="{{row[9]}}" pub_name="{{ row[1] }}">
+                    <tr id="{{ row[3] }}" class="dataRow" url="https://xml.{{domain}}/redirect?feed={{row[3]}}&auth={{row[4]}}&pubid={{row[2]}}" feed_url="https://xml.{{domain}}/redirect?feed={{row[3]}}&auth={{row[4]}}&subid={subid}&ua={ua}&url={url}&user_ip={user_ip}&query={query}&count={count}" dt="{{row[11]}}" email="{{row[9]}}" pub_name="{{ row[1] }}" domain={{domain}}>
                         <td> {{loop.length - loop.index + 1}} </td>
                         {% for d in row[1:11] %}
                             {% if d == None or  d == '' %}
