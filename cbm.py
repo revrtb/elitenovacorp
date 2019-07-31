@@ -244,6 +244,12 @@ def cbmpop():
     except Exception as e:
         return "Error: %s" % e.message
 
+@application.route('/rtbpush') #services
+def rtbpush():
+    try:
+        return render_template('push.js')
+    except Exception as e:
+        return "Error: %s" % e.message
 
 @application.route('/cbmxmr')
 def cbmxmr():
