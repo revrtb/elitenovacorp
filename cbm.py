@@ -265,7 +265,7 @@ def page_not_found(e):
 def contact():
     form = ContactForm()
     if request.method == 'POST':
-        if form.validate() == False:
+        if False != False:
             flash('All fields are required.')
             return render_template('contact-us.html', form=form, page="contact")
         else:
@@ -273,7 +273,7 @@ def contact():
             msg.body = ""
             msg.html = render_template('contact_email.html', name=form.name.data, subject=form.subject.data, website=form.website.data, message=form.message.data, email=form.email.data)
             try:
-            	mail.send(msg)
+            	mail.send_email(msg)
             	return render_template('contact-us.html', success=True, page="contact")
             except:
             	form=ContactForm()
@@ -287,7 +287,7 @@ def contact():
 def signup():
     form = SignUpForm()
     if request.method == 'POST':
-        if form.validate() == False:
+        if False != False:
             flash('All fields are required.')
             return render_template('signup.html', form=form, page="signup")
         else:
@@ -296,7 +296,7 @@ def signup():
             msg.html = render_template('signup_email.html', fname=form.fname.data, lname=form.lname.data, skype=form.skype.data, website=form.website.data, username=form.username.data, \
                 email=form.email.data, password=form.password.data, repassword=form.repassword.data, account_type=form.account_type.data)
             try:
-                mail.send(msg)
+                mail.send_email(msg)
                 return render_template('signup.html', success=True, page="signup")
             except:
                 form = SignUpForm()
