@@ -122,7 +122,7 @@ def dashboard():
             return render_template('dashboard_login.html', page='dashboard_login', error="Wrong username or password!")
 
         login_user(usero)
-
+        print (dbo.get_publishers())
         info, data = dbo.get_publishers()
         return render_template('dashboard.html', page='dashboard', publishers=data, fields=info, count=len(data), domain=appconfig.Domain.DOMAIN)
         

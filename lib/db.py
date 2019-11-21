@@ -17,7 +17,7 @@ class DB:
 			if self.connection == None:
 				self.connection = mysql.connector.connect(host=host, user=user, password=pswd, database=db, port=port)
 		except Exception as e:
-			print "MySQLError %s" % (e.message)
+			print ("MySQLError %s" % (e.message))
 
 	def check_connection(func):
 		def wrap_func(*args, **kwargs):
@@ -65,7 +65,7 @@ class DB:
 			self.connection.commit()
 			return columns, data
 		except Exception as e:
-			return {'error': e.message}
+			return {'error': str(e)}
 
 	@check_connection
 	def get_publisher_by_feedid(self, feedid):
@@ -78,7 +78,7 @@ class DB:
 			self.connection.commit()
 			return data
 		except Exception as e:
-			return {'error': e.message}
+			return {'error': str(e)}
 
 	@check_connection
 	def get_publisher_by_subid(self, subid):
@@ -91,7 +91,7 @@ class DB:
 			self.connection.commit()
 			return data
 		except Exception as e:
-			return {'error': e.message}
+			return {'error': str(e)}
 
 	@check_connection
 	def get_user_by_id(self, id):
@@ -104,7 +104,7 @@ class DB:
 			self.connection.commit()
 			return data
 		except Exception as e:
-			return {'error': e.message}
+			return {'error': str(e)}
 
 	@check_connection
 	def get_user_by_uname(self, uname):
@@ -117,7 +117,7 @@ class DB:
 			self.connection.commit()
 			return data
 		except Exception as e:
-			return {'error': e.message}
+			return {'error': str(e)}
 
 	@check_connection
 	def add_publisher(self, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link):
@@ -129,7 +129,7 @@ class DB:
 			self.connection.commit()
 			return True
 		except Exception as e:
-			return e.message
+			return str(e)
 
 	@check_connection
 	def update_publisher(self, id, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link):
@@ -141,7 +141,7 @@ class DB:
 			self.connection.commit()
 			return True
 		except Exception as e:
-			return e.message
+			return str(e)
 
 	@check_connection
 	def update_publisher_dt(self, ids):
@@ -154,7 +154,7 @@ class DB:
 			self.connection.commit()
 			return True
 		except Exception as e:
-			return e.message
+			return str(e)
 
 	@check_connection
 	def delete_publisher(self, id):
@@ -166,5 +166,5 @@ class DB:
 			self.connection.commit()
 			return True
 		except Exception as e:
-			return e.message
+			return str(e)
 
