@@ -23,6 +23,8 @@ application.config.update(
     RECAPTCHA_PRIVATE_KEY=os.environ['RECAPTCHA_PRIVATE_KEY']
     )
 
+# recaptcha = ReCaptcha(app=application)
+
 appconfig.Domain.DOMAIN = os.environ['DOMAIN']
 
 mail = email.aMail()
@@ -265,7 +267,7 @@ def page_not_found(e):
 def contact():
     form = ContactForm()
     if request.method == 'POST':
-        if False != False:
+        if form.validate_on_submit():
             flash('All fields are required.')
             return render_template('contact-us.html', form=form, page="contact")
         else:
