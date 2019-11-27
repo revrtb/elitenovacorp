@@ -19,8 +19,8 @@ application = Flask(__name__)
 application.config.from_object('appconfig.DevelopmentConfig')
 application.config.update(
     MAIL_PASSWORD=os.environ['MAIL_PASS'],
-    RECAPTCHA_PUBLIC_KEY=os.environ['RECAPTCHA_PUBLIC_KEY'],
-    RECAPTCHA_PRIVATE_KEY=os.environ['RECAPTCHA_PRIVATE_KEY']
+    RECAPTCHA2_PUBLIC_KEY=os.environ['RECAPTCHA2_PUBLIC_KEY'],
+    RECAPTCHA2_PRIVATE_KEY=os.environ['RECAPTCHA2_PRIVATE_KEY']
     )
 
 # recaptcha = ReCaptcha(app=application)
@@ -267,7 +267,7 @@ def page_not_found(e):
 def contact():
     form = ContactForm()
     if request.method == 'POST':
-        if form.validate_on_submit():
+        if not form.validate_on_submit():
             flash('All fields are required.')
             return render_template('contact-us.html', form=form, page="contact")
         else:
@@ -276,7 +276,7 @@ def contact():
             msg.html = render_template('contact_email.html', name=form.name.data, subject=form.subject.data, website=form.website.data, message=form.message.data, email=form.email.data)
             try:
             	mail.send_email(msg)
-            	return render_template('contact-us.html', success=True, page="contact")
+            	return render_template('contact-us.html', form=form, success=True, page="contact")
             except:
             	form=ContactForm()
             	return render_template('contact-us.html',  form=form, error=True, page="contact")
