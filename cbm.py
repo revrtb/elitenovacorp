@@ -289,7 +289,7 @@ def contact():
 def signup():
     form = SignUpForm()
     if request.method == 'POST':
-        if False != False:
+        if not form.validate_on_submit():
             flash('All fields are required.')
             return render_template('signup.html', form=form, page="signup")
         else:
@@ -299,7 +299,7 @@ def signup():
                 email=form.email.data, password=form.password.data, repassword=form.repassword.data, account_type=form.account_type.data)
             try:
                 mail.send_email(msg)
-                return render_template('signup.html', success=True, page="signup")
+                return render_template('signup.html', form=form, success=True, page="signup")
             except:
                 form = SignUpForm()
                 return render_template('signup.html',  form=form, error=True, page="signup")
