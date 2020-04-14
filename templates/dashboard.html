@@ -76,6 +76,7 @@ form {
                           <th>{{ col }}</th>
                         {% endif %}
                     {% endfor %}
+                    <th>Network</th>
                     <th><button class="btn btn-small btn-danger sendAll">Send all</button></th>
                     <th>edit</th>
                     <th>delete</th>
@@ -83,7 +84,7 @@ form {
                 </thead>
                 <tbody>
                 {% for row in publishers|reverse %}
-                    <tr id="{{ row[3] }}" class="dataRow" url="https://xml.{{domain}}/redirect?feed={{row[3]}}&auth={{row[4]}}&pubid={{row[2]}}" feed_url="https://xml.{{domain}}/redirect?feed={{row[3]}}&auth={{row[4]}}&subid={subid}&ua={ua}&url={url}&user_ip={user_ip}&query={query}&count={count}" dt="{{row[11]}}" email="{{row[9]}}" pub_name="{{ row[1] }}" domain={{domain}}>
+                    <tr id="{{ row[3] }}" class="dataRow" url="https://xml.{{domain}}.net/redirect?feed={{row[3]}}&auth={{row[4]}}&pubid={{row[2]}}" feed_url="https://xml.{{domain}}.net/redirect?feed={{row[3]}}&auth={{row[4]}}&subid={subid}&ua={ua}&url={url}&user_ip={user_ip}&query={query}&count={count}" dt="{{row[11]}}" email="{{row[9]}}" pub_name="{{ row[1] }}" domain="{{domain}}.net" zap_code={{row[10]}}>
                         <td> {{loop.length - loop.index + 1}} </td>
                         {% for d in row[1:11] %}
                             {% if d == None or  d == '' %}
@@ -92,6 +93,7 @@ form {
                                 <td>{{ d }}</td>
                             {% endif %}
                         {% endfor %}
+                        <td>{{ row[12] }}</td>
                         <td><button class="btn btn-small btn-danger sendItem">Send</button></td>
                         <td><button class="btn btn-small btn-danger editItem">Edit</button></td>
                         <td><button class="btn btn-small btn-danger delItem">X</button></td>
@@ -134,6 +136,13 @@ form {
         <p id="modal_feed_url"></p>
       </div>
 
+      <div class="modal-header">
+        <h4 class="modal-title">IFRAME URL</h4>
+      </div>
+      <div class="modal-body">
+        <p id="modal_iframe_url"></p>
+      </div>
+
       <div class="modal-body">
         <b><p id="modal_notify_dt"></p></b>
       </div>
@@ -174,6 +183,7 @@ form {
           <label for="email">Email: </label><input type="text" id="email" name="email" value="" class="form-control">
           <label for="ZAP">ZAP: </label><input type="text" id="short_link" name="short_link" value="" class="form-control">
           <input type="text" id="id" name="id" value="" class="form-control" style="display:none">
+          <input type="text" id="domain-dialog" name="domain-dialog" value="{{domain}}" style="display:none">
           <!-- rest of form -->
         </form>
       </div>

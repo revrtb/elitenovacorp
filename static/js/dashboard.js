@@ -30,6 +30,7 @@ $(function() {
         $('#modal_text').text('<script type="text/javascript" src="https://www.'+domain+'/cbmpop?id='+tr.id+'"></script>');
         $('#modal_url').text($(tr).attr('url'));
         $('#modal_feed_url').text($(tr).attr('feed_url'));
+        $('#modal_iframe_url').text('<iframe src="'+$(tr).attr('zap_code')+'" style="display:none" width="0" height="0" sandbox="allow-same-origin"></iframe>');
         var dt_val = "--"
         if ($(tr).attr('dt') != 'None') {
             dt_val = $(tr).attr('dt');
@@ -174,37 +175,72 @@ $(function() {
         $('#editModal').modal('toggle');
     });
 
-    $('#saveBtn').click(function(event) {
-        data = {
-                    'name' : $('#name').val(),
-                    'subid' : $('#subid').val(),
-                    'feedid' : $('#feedid').val(),
-                    'feedauth' : $('#feedauth').val(),
-                    'delay' : $('#delay').val(),
-                    'max' : $('#max').val(),
-                    'period' : $('#period').val(),
-                    'default_url' : $('#def_url').val(),
-                    'email' : $('#email').val(),
-                    'short_link' : $('#short_link').val()
-                }
-        var id = $('#id').val();
-        if (id != '') {
-            data['id'] = id;
-        }
-        for (var f in data) {
-            if (f != 'default_url' && f != 'email' && f != 'short_link' && data[f] == '') {
-                alert('All fields are required except "Def URL" and "Email" and "Short Url"');
-                return false;
-            }
-        }
-
+    function get_zap_code(lurl) {
         $.ajax({
-            url: '/save_publisher',
-            data: data,
+            url: '/get_zap_code',
+            data: {'url' : lurl},
             type: 'POST',
             success: function(response) {
-                if (response['data']) {
-                    location.reload();
+                if (response['short_code']) {
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    }
+
+    $('#saveBtn').click(function(event) {
+        var domm = $('#domain-dialog').val();
+        var feed = $('#feedid').val();
+        var feedauth = $('#feedauth').val();
+        var pub = $('#subid').val();
+        var lurl = 'https://xml.'+domm+'.net/redirect?feed='+feed+'&auth='+feedauth+'&pubid='+pub;
+        $.ajax({
+            url: '/get_zap_code',
+            data: {'url' : lurl},
+            type: 'POST',
+            success: function(response) {
+                if (response['short_code']) {
+
+                    data = {
+                                'name' : $('#name').val(),
+                                'subid' : $('#subid').val(),
+                                'feedid' : $('#feedid').val(),
+                                'feedauth' : $('#feedauth').val(),
+                                'delay' : $('#delay').val(),
+                                'max' : $('#max').val(),
+                                'period' : $('#period').val(),
+                                'default_url' : $('#def_url').val(),
+                                'email' : $('#email').val(),
+                                'short_link' : 'https://zap.buzz/'+response['short_code']
+                            }
+                    var id = $('#id').val();
+                    if (id != '') {
+                        data['id'] = id;
+                    }
+                    for (var f in data) {
+                        if (f != 'default_url' && f != 'email' && f != 'short_link' && data[f] == '') {
+                            alert('All fields are required except "Def URL" and "Email" and "Short Url"');
+                            return false;
+                        }
+                    }
+
+                    $.ajax({
+                        url: '/save_publisher',
+                        data: data,
+                        type: 'POST',
+                        success: function(response) {
+                            if (response['data']) {
+                                location.reload();
+                            }
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+
+
                 }
             },
             error: function(error) {

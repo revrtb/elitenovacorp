@@ -23,6 +23,7 @@ application.config.update(
     RECAPTCHA2_PRIVATE_KEY=os.environ['RECAPTCHA2_PRIVATE_KEY']
     )
 
+ZAP_URL=os.environ['ZAP_URL']
 # recaptcha = ReCaptcha(app=application)
 
 appconfig.Domain.DOMAIN = os.environ['DOMAIN']
@@ -30,7 +31,6 @@ appconfig.Domain.DOMAIN = os.environ['DOMAIN']
 mail = email.aMail()
 
 mail.initApp(application)
-
 
 # application.config['MYSQL_DATABASE_USER'] = appconfig.MYSQLDB.USER
 # application.config['MYSQL_DATABASE_PASSWORD'] = appconfig.MYSQLDB.PASSWORD
@@ -104,6 +104,20 @@ def login():
 def publishers():
 	return render_template('publishers.html', page='publishers')
 
+@application.route('/get_zap_code', methods=['POST']) #services
+def get_zap_code():
+    url = str(request.form.get('url'))
+    import requests
+    tdata = requests.post(ZAP_URL+'/api/sign')
+    ret = json.loads(tdata.text)
+    zap_code = {'error': 'No data'}
+    if 'token' in ret:
+        headers = {'x-api-key':ret['token'], 'Content-Type': 'application/json'}
+        rdata = {'url': url}
+        zdata = requests.post(ZAP_URL+'/api/shorten', headers=headers, data=json.dumps(rdata))
+        zap_code = json.loads(zdata.text)
+    return jsonify(zap_code)
+
 @login_manager.user_loader
 def load_user(user_id):
     usr = user.CBMUser()
@@ -124,9 +138,17 @@ def dashboard():
             return render_template('dashboard_login.html', page='dashboard_login', error="Wrong username or password!")
 
         login_user(usero)
-        print (dbo.get_publishers())
         info, data = dbo.get_publishers()
-        return render_template('dashboard.html', page='dashboard', publishers=data, fields=info, count=len(data), domain=appconfig.Domain.DOMAIN)
+        ldata = []
+        for row in data:
+            lr = list(row)
+            if lr[10]:
+                dom = lr[10].strip()
+                lr.append(os.environ['PUB_DOMAIN']+dom[17:])
+            else:
+                lr.append('--')
+            ldata.append(lr)
+        return render_template('dashboard.html', page='dashboard', publishers=ldata, fields=info, count=len(data), domain=appconfig.Domain.DOMAIN)
         
 @application.route('/get_publisher', methods=['POST'])
 @login_required
