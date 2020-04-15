@@ -177,7 +177,7 @@ def save_publisher():
             status = dbo.update_publisher(id, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link)
         return jsonify({'data': status})
     except Exception as e:
-        return jsonify({'data': e.message})
+        return jsonify({'data': str(e)})
 
 @application.route('/delete_publisher', methods=['POST'])
 @login_required
@@ -187,7 +187,7 @@ def delete_publisher():
         status = dbo.delete_publisher(feedid)
         return jsonify({'data': status})
     except Exception as e:
-        return jsonify({'data': e.message})        
+        return jsonify({'data': str(e)})        
 
 @application.route('/notify_publisher', methods=['POST'])
 @login_required
@@ -207,7 +207,7 @@ def notify_publisher():
         status = dbo.update_publisher_dt([id])
         return jsonify({'data': status})
     except Exception as e:
-        return jsonify({'data': e.message})
+        return jsonify({'data': str(e)})
 
 @application.route('/notify_all', methods=['POST'])
 @login_required
@@ -233,7 +233,7 @@ def notify_all():
         status = dbo.update_publisher_dt(ids)
         return jsonify({'data': status})
     except Exception as e:
-        return jsonify({'data': e.message})
+        return jsonify({'data': str(e)})
 
 @application.route("/dashboardLogout")
 @login_required
@@ -266,14 +266,14 @@ def cbmpop():
 
         return render_template('pop_templatex.js', PAR_TRGURL=url, PAR_DELAY=delay, PAR_MAX=max, PAR_DUR=dur, PAR_DEFURL=default_url)
     except Exception as e:
-        return "Error: %s" % e.message
+        return "Error: %s" % str(e)
 
 @application.route('/rtbpush') #services
 def rtbpush():
     try:
         return render_template('push.js')
     except Exception as e:
-        return "Error: %s" % e.message
+        return "Error: %s" % str(e)
 
 @application.route('/cbmxmr')
 def cbmxmr():
