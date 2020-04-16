@@ -197,12 +197,12 @@ def notify_publisher():
         pub_name = request.form.get('pub_name')
         email = request.form.get('email')
         direct_url = request.form.get('direct_url')
-        feed_url = request.form.get('feed_url')
+        iframe = request.form.get('iframe')
         id = request.form.get('id')
         domain = appconfig.Domain.DOMAIN
         msg = Message('%s (new adserving domain code) - %s'%(domain, pub_name), sender=appconfig.MailData.FROM, recipients=[email])
         msg.body = ""
-        msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, feed_url=feed_url, direct_url=direct_url, html_code=html_code)
+        msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, iframe=iframe, direct_url=direct_url, html_code=html_code)
         mail.send_email(msg)
         status = dbo.update_publisher_dt([id])
         return jsonify({'data': status})

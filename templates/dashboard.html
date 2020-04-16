@@ -84,7 +84,7 @@ form {
                 </thead>
                 <tbody>
                 {% for row in publishers|reverse %}
-                    <tr id="{{ row[3] }}" class="dataRow" url="https://xml.{{domain}}.net/redirect?feed={{row[3]}}&auth={{row[4]}}&pubid={{row[2]}}" feed_url="https://xml.{{domain}}.net/redirect?feed={{row[3]}}&auth={{row[4]}}&subid={subid}&ua={ua}&url={url}&user_ip={user_ip}&query={query}&count={count}" dt="{{row[11]}}" email="{{row[9]}}" pub_name="{{ row[1] }}" domain="{{domain}}.net" zap_code={{row[10]}}>
+                    <tr id="{{ row[3] }}" class="dataRow" url="https://xml.{{domain}}.net/redirect?feed={{row[3]}}&auth={{row[4]}}&pubid={{row[2]}}" feed_url="https://xml.{{domain}}.net/redirect?feed={{row[3]}}&auth={{row[4]}}&subid={subid}&ua={ua}&url={url}&user_ip={user_ip}&query={query}&count={count}" dt="{{row[11]}}" email="{{row[9]}}" pub_name="{{ row[1] }}" domain="{{domain}}" zap_code={{row[10]}} pub_code="{{row[12]}}">
                         <td> {{loop.length - loop.index + 1}} </td>
                         {% for d in row[1:11] %}
                             {% if d == None or  d == '' %}
@@ -119,14 +119,16 @@ form {
       </div>
       <div class="modal-body">
         <p id="modal_text"></p>
+        <p id="modal_text_alt"></p>
       <hr>
       </div>
 
       <div class="modal-header">
-        <h4 class="modal-title">DIRECT URL</h4>
+        <h4 class="modal-title">DIRECT URLS</h4>
       </div>
       <div class="modal-body">
         <p id="modal_url"></p>
+        <p id="modal_url_alt"></p>
       </div>
 
       <div class="modal-header">

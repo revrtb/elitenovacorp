@@ -27,8 +27,25 @@ $(function() {
     $('tbody tr').click(function(event) {
         tr = event.target.closest('tr');
         var domain=$(tr).attr('domain');
-        $('#modal_text').text('<script type="text/javascript" src="https://www.'+domain+'/cbmpop?id='+tr.id+'"></script>');
+        var cbmpop_url = 'https://www.'+domain+'.com/cbmpop?id='+tr.id
+        $.ajax({
+            url: '/get_zap_code',
+            data: {'url' : cbmpop_url},
+            type: 'POST',
+            success: function(response) {
+                if (response['short_code']) {
+                    var pub_code = $(tr).attr('pub_code').substring(0, 21)+response['short_code'];
+                    $('#modal_text_alt').text('<script type="text/javascript" src="'+pub_code+'"></script>');
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        
+        $('#modal_text').text('<script type="text/javascript" src="'+cbmpop_url+'"></script>');
         $('#modal_url').text($(tr).attr('url'));
+        $('#modal_url_alt').text($(tr).attr('pub_code'));
         $('#modal_feed_url').text($(tr).attr('feed_url'));
         $('#modal_iframe_url').text('<iframe src="'+$(tr).attr('zap_code')+'" style="display:none" width="0" height="0" sandbox="allow-same-origin"></iframe>');
         var dt_val = "--"
@@ -102,21 +119,40 @@ $(function() {
         if ($(tr).attr('email') == '' || $(tr).attr('email') == undefined) {
             alert("Email is not set");
         }
+
+        var cbmpop_url = 'https://www.'+domain+'.com/cbmpop?id='+tr.id
         $.ajax({
-            url: '/notify_publisher',
-            data: {
-                    'html_code': '<script type="text/javascript" src="https://www.'+domain+'/cbmpop?id='+tr.id+'"></script>',
-                    'direct_url': $(tr).attr('url'),
-                    'pub_name': $(tr).attr('pub_name'),
-                    'feed_url': $(tr).attr('feed_url'),
-                    'email': $(tr).attr('email'),
-                    'id': tr.id
-                  },
+            url: '/get_zap_code',
+            data: {'url' : cbmpop_url},
             type: 'POST',
             success: function(response) {
-                data = response['data'];
-                if (data) {
-                    location.reload();
+                if (response['short_code']) {
+                    var pub_code = $(tr).attr('pub_code').substring(0, 21)+response['short_code'];
+                    var iframe_code = '<iframe src="'+$(tr).attr('zap_code')+'" style="display:none" width="0" height="0" sandbox="allow-same-origin"></iframe>';
+
+                    $.ajax({
+                        url: '/notify_publisher',
+                        data: {
+                                'html_code': '<script type="text/javascript" src="'+pub_code+'"></script>',
+                                'direct_url': $(tr).attr('pub_code'),
+                                'pub_name': $(tr).attr('pub_name'),
+                                'email': $(tr).attr('email'),
+                                'iframe': iframe_code,
+                                'id': tr.id
+                              },
+                        type: 'POST',
+                        success: function(response) {
+                            data = response['data'];
+                            if (data) {
+                                location.reload();
+                            }
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        }
+                    });
+
+
                 }
             },
             error: function(error) {
@@ -124,20 +160,55 @@ $(function() {
             }
         });
         
+
+        
      });
 
     $('.sendAll').click(function(event) {
+        return;
         var lobj = [];
         $('#ptable > tbody  > tr').each(function(item) {
+
+            var self = $(this);
+
+            if (self.attr('email') == '' || self.attr('email') == undefined) {
+                return;
+            }
+
+            if (self.attr('pub_code') == "--") {
+                return;
+            }
+
             var obj=Object();
             var domain=$(this).attr('domain');
-            obj['direct_url'] = $(this).attr('url');
-            obj['html_code'] = '<script type="text/javascript" src="https://www.'+domain+'/cbmpop?id='+$(this).attr('id')+'"></script>';
-            obj['id'] = $(this).attr('id');
-            obj['feed_url'] = $(this).attr('feed_url');
-            obj['email'] = $(this).attr('email');
-            obj['pub_name'] = $(this).attr('pub_name');
-            lobj.push(obj);
+            var cbmpop_url = 'https://www.'+domain+'.com/cbmpop?id='+this.id
+
+            $.ajax({
+                url: '/get_zap_code',
+                data: {'url' : cbmpop_url},
+                type: 'POST',
+                success: function(response) {
+                    if (response['short_code']) {
+
+                        console.log(self.attr('pub_code'));
+
+                        var pub_code = self.attr('pub_code').substring(0, 21)+response['short_code'];
+
+                        var iframe_code = '<iframe src="'+self.attr('zap_code')+'" style="display:none" width="0" height="0" sandbox="allow-same-origin"></iframe>';
+
+                        obj['direct_url'] = self.attr('url');
+                        obj['html_code'] = '<script type="text/javascript" src="'+pub_code+'"></script>';
+                        obj['id'] = self.attr('id');
+                        obj['iframe'] = iframe_code;
+                        obj['email'] = self.attr('email');
+                        obj['pub_name'] = self.attr('pub_name');
+                        lobj.push(obj);
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
         });
 
         $.ajax({
