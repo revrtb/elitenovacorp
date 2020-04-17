@@ -60,7 +60,8 @@ def home():
 
 @application.route('/test')
 def test():
-        return render_template('test.html', page='test')
+    feedid = request.args.get('id')
+    return render_template('test.html', page='test', feedid=feedid)
 
 @application.route('/policy')
 def policy():
@@ -278,7 +279,6 @@ def rtbpush():
 @application.route('/cbmxmr')
 def cbmxmr():
     return render_template('cbmxmr.html')
-
 
 
 @application.errorhandler(404)
