@@ -200,7 +200,7 @@ def notify_publisher():
         iframe = request.form.get('iframe')
         id = request.form.get('id')
         domain = appconfig.Domain.DOMAIN
-        msg = Message('RevRTB - %s'%(pub_name), sender=appconfig.MailData.FROM, recipients=[email])
+        msg = Message('RevRTB publisher code - %s'%(pub_name), sender=appconfig.MailData.FROM, recipients=[email])
         msg.body = ""
         msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, iframe=iframe, direct_url=direct_url, html_code=html_code)
         mail.send_email(msg)
