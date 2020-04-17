@@ -63,6 +63,10 @@ def test():
     feedid = request.args.get('id')
     return render_template('test.html', page='test', feedid=feedid)
 
+@application.route('/test_webtv')
+def test_webtv():
+    return render_template('test_webtv.html')
+
 @application.route('/policy')
 def policy():
 	return render_template('policy.html', page='policy', domain=appconfig.Domain.DOMAIN)
