@@ -262,7 +262,7 @@ def cbmpop():
             feed = data[3]
             auth = data[4]
             subid = data[2]
-            url="https://xml.%s/redirect?feed=%s&auth=%s&pubid=%s&url=" % (str(appconfig.Domain.DOMAIN), str(feed), auth, subid)
+            url="https://xml.%s.net/redirect?feed=%s&auth=%s&pubid=%s&url=" % (str(appconfig.Domain.DOMAIN), str(feed), auth, subid)
 
         return render_template('pop_templatex.js', PAR_TRGURL=url, PAR_DELAY=delay, PAR_MAX=max, PAR_DUR=dur, PAR_DEFURL=default_url)
     except Exception as e:
