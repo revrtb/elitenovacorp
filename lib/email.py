@@ -22,3 +22,10 @@ class aMail:
         thr = Thread(target=self.send_async_email, args=[msg])
         thr.start()
         return thr
+
+    def send_email_low(self, msg):
+        try:
+            self.mail.send(msg)
+            return True
+        except Exception as e:
+            return False

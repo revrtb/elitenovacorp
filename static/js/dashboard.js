@@ -120,6 +120,7 @@ $(function() {
             alert("Email is not set");
         }
 
+        $('#loading').css('display', 'block');
         var cbmpop_url = 'https://www.'+domain+'.com/cbmpop?id='+tr.id
         $.ajax({
             url: '/get_zap_code',
@@ -144,7 +145,9 @@ $(function() {
                         success: function(response) {
                             data = response['data'];
                             if (data) {
-                                location.reload();
+                                // location.reload();
+                                $('#loading').css('display', 'none');
+                                $.notify("Email sent to "+$(tr).attr('pub_name'), "success");
                             }
                         },
                         error: function(error) {
@@ -310,8 +313,6 @@ $(function() {
                             console.log(error);
                         }
                     });
-
-
                 }
             },
             error: function(error) {

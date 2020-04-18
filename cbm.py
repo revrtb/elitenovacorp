@@ -208,7 +208,7 @@ def notify_publisher():
         msg = Message('RevRTB publisher code - %s'%(pub_name), sender=appconfig.MailData.FROM, recipients=[email])
         msg.body = ""
         msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, iframe=iframe, direct_url=direct_url, html_code=html_code)
-        mail.send_email(msg)
+        mail.send_email_low(msg)
         status = dbo.update_publisher_dt([id])
         return jsonify({'data': status})
     except Exception as e:

@@ -17,7 +17,7 @@ class DB:
 			if self.connection == None:
 				self.connection = mysql.connector.connect(host=host, user=user, password=pswd, database=db, port=port)
 		except Exception as e:
-			print ("MySQLError %s" % (e.message))
+			print("MySQLError %s" % (str(e)))
 
 	def check_connection(func):
 		def wrap_func(*args, **kwargs):
