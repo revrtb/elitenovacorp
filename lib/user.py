@@ -25,7 +25,10 @@ class CBMUser(object):
 		self.email = data[2]
 
 	def get_user_by_uname(self, uname, dbo):
-		data = dbo.get_user_by_uname(uname)
+		import os
+
+		DOMAIN=os.environ['DOMAIN']
+		data = dbo.get_user_by_uname(uname, DOMAIN)
 		self.id = data[0]
 		self.username = data[1]
 		self.email = data[2]

@@ -41,8 +41,9 @@ class DB:
 	def validate_login(self, login, pswd):
 		try:
 			cursor = self.connection.cursor()
+			nwrk = os.environ['DOMAIN']
 
-			cursor.execute('SELECT password from cbm_users where username="%s"' % (login))
+			cursor.execute('SELECT password from cbm_users where username="%s" and network="%s"' % (login, nwrk))
 			data = cursor.fetchone()
 			cursor.close()
 			self.connection.commit()
@@ -57,8 +58,9 @@ class DB:
 	def get_publishers(self):
 		try:
 			cursor = self.connection.cursor()
+			nwrk = os.environ['DOMAIN']
 
-			cursor.execute("SELECT id, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link, date_time  from publishers")
+			cursor.execute('SELECT id, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link, date_time  from publishers where network="%s"' % (nwrk))
 			columns = [i[0] for i in cursor.description]
 			data = cursor.fetchall()
 			cursor.close() 
@@ -71,8 +73,9 @@ class DB:
 	def get_publisher_by_feedid(self, feedid):
 		try:
 			cursor = self.connection.cursor()
+			nwrk = os.environ['DOMAIN']
 
-			cursor.execute("SELECT * from publishers where feedid=%s" % (feedid))
+			cursor.execute('SELECT * from publishers where feedid=%s and network="%s"' % (feedid, nwrk))
 			data = cursor.fetchone()
 			cursor.close() 
 			self.connection.commit()
@@ -84,8 +87,9 @@ class DB:
 	def get_publisher_by_subid(self, subid):
 		try:
 			cursor = self.connection.cursor()
+			nwrk = os.environ['DOMAIN']
 
-			cursor.execute("SELECT * from publishers where subid=%s" % (subid))
+			cursor.execute('SELECT * from publishers where subid=%s and network="%s"' % (subid, nwrk))
 			data = cursor.fetchone()
 			cursor.close() 
 			self.connection.commit()
@@ -98,7 +102,7 @@ class DB:
 		try:
 			cursor = self.connection.cursor()
 
-			cursor.execute('SELECT id, username, email from cbm_users where id=%s' % (id))
+			cursor.execute('SELECT id, username, email, network from cbm_users where id=%s' % (id))
 			data = cursor.fetchone()
 			cursor.close() 
 			self.connection.commit()
@@ -107,15 +111,18 @@ class DB:
 			return {'error': str(e)}
 
 	@check_connection
-	def get_user_by_uname(self, uname):
+	def get_user_by_uname(self, uname, nwrk):
 		try:
 			cursor = self.connection.cursor()
 
-			cursor.execute('SELECT id, username, email from cbm_users where username="%s"' % (uname))
+			cursor.execute('SELECT id, username, email, network from cbm_users where username="%s" and network="%s"' % (uname, nwrk))
 			data = cursor.fetchone()
 			cursor.close() 
 			self.connection.commit()
-			return data
+			if data:
+				return data
+			else:
+				return {}
 		except Exception as e:
 			return {'error': str(e)}
 
@@ -123,7 +130,8 @@ class DB:
 	def add_publisher(self, name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link):
 		try:
 			cursor = self.connection.cursor()
-			sql = 'INSERT into publishers (name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link) values ("%s", %s, %s, "%s", %s, %s, %s, "%s", "%s", "%s");' % (name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link)
+			nwrk = os.environ['DOMAIN']
+			sql = 'INSERT into publishers (name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link, network) values ("%s", %s, %s, "%s", %s, %s, %s, "%s", "%s", "%s", "%s");' % (name, subid, feedid, feedauth, delay, max, period, default_url, email, short_link, nwrk)
 			cursor.execute(sql)
 			cursor.close() 
 			self.connection.commit()
@@ -147,8 +155,9 @@ class DB:
 	def update_publisher_dt(self, ids):
 		try:
 			cursor = self.connection.cursor()
+			nwrk = os.environ['DOMAIN']
 			idss = ','.join(ids)
-			sql = 'UPDATE publishers set date_time=NOW() where feedid in (%s);' % (idss)
+			sql = 'UPDATE publishers set date_time=NOW() where feedid in (%s) and network="%s";' % (idss, nwrk)
 			cursor.execute(sql)
 			cursor.close() 
 			self.connection.commit()
@@ -160,7 +169,8 @@ class DB:
 	def delete_publisher(self, id):
 		try:
 			cursor = self.connection.cursor()
-			sql = 'DELETE from publishers where feedid=%s ;' % (id)
+			nwrk = os.environ['DOMAIN']
+			sql = 'DELETE from publishers where feedid=%s and network="%s";' % (id, nwrk)
 			cursor.execute(sql)
 			cursor.close() 
 			self.connection.commit()
