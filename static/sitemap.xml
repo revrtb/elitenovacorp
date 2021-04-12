@@ -6,35 +6,35 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 
         <url> 
-            <loc>http://EliteNovaCorp.com</loc> 
+            <loc>http://elitenovacorp.com</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>
         <url> 
-            <loc>http://EliteNovaCorp.com/home</loc> 
+            <loc>http://elitenovacorp.com/home</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>
         <url> 
-            <loc>http://EliteNovaCorp.com/publishers</loc> 
+            <loc>http://elitenovacorp.com/publishers</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>
         <url> 
-            <loc>http://EliteNovaCorp.com/advertisers</loc> 
+            <loc>http://elitenovacorp.com/advertisers</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>
         <url> 
-            <loc>http://EliteNovaCorp.com/contact</loc> 
+            <loc>http://elitenovacorp.com/contact</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>
         <url> 
-            <loc>http://EliteNovaCorp.com/signup</loc> 
+            <loc>http://elitenovacorp.com/signup</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>
         <url> 
-            <loc>http://EliteNovaCorp.com/terms</loc> 
+            <loc>http://elitenovacorp.com/terms</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>                                        
         <url> 
-            <loc>http://EliteNovaCorp.com/policy</loc> 
+            <loc>http://elitenovacorp.com/policy</loc> 
             <lastmod>2017-05-22T00:41:37Z</lastmod> 
         </url>          
 </urlset>

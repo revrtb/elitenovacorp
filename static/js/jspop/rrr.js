@@ -259,7 +259,7 @@
             show_on: [0],
             max_per_page: 2,
             clicks: [0],
-            url: 'http://www.EliteNovaCorp.com',
+            url: 'http://www.elitenovacorp.com',
             key: '48e37d6b9929a6a1fdd5f04045b12b82',
             self: false,
             mself: false,

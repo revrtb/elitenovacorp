@@ -100,9 +100,9 @@ def login():
     if user != 'publisher' and user != 'advertiser' and user != 'admin':
         return render_template('404.html'), 404 
     if user == 'publisher':
-        action = "http://login.EliteNovaCorp.com/publisher/login"
+        action = "http://login.elitenovacorp.com/publisher/login"
     elif user == 'advertiser':
-        action = "http://login.EliteNovaCorp.com/advertiser/login"
+        action = "http://login.elitenovacorp.com/advertiser/login"
     return render_template('login.html', page='login', user=user, action=action)
 
 @application.route('/publishers') #services
@@ -205,7 +205,7 @@ def notify_publisher():
         iframe = request.form.get('iframe')
         id = request.form.get('id')
         domain = appconfig.Domain.DOMAIN
-        msg = Message('EliteNova Corp publisher code - %s'%(pub_name), sender=appconfig.MailData.FROM, recipients=[email])
+        msg = Message('Elite Nova Corp publisher code - %s'%(pub_name), sender=appconfig.MailData.FROM, recipients=[email])
         msg.body = ""
         msg.html = render_template('notify_email.html', domain=domain, publisher_name=pub_name, iframe=iframe, direct_url=direct_url, html_code=html_code)
         mail.send_email_low(msg)
