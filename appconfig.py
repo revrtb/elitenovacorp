@@ -17,15 +17,15 @@ class DevelopmentConfig(Config):
     MAIL_SERVER = "smtp.zoho.com"
     MAIL_PORT = 465
     MAIL_USE_SSL = True
-    MAIL_USERNAME = 'support@revrtb.com'
+    MAIL_USERNAME = 'support@EliteNovaCorp.com'
     MAIL_PASSWORD = ''
     RECAPTCHA2_PUBLIC_KEY=''
     RECAPTCHA2_PRIVATE_KEY=''
     RECAPTCHA2_DATA_ATTRS = {'theme': 'dark'}
 
 class MailData():
-	FROM = 'support@revrtb.com'
-	TO = ['support@revrtb.com']
+	FROM = 'support@EliteNovaCorp.com'
+	TO = ['support@EliteNovaCorp.com']
 
 class Domain():
     DOMAIN = ""
