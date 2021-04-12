@@ -1,0 +1,11 @@
+export DOMAIN=
+export PUB_DOMAIN=
+export MAIL_PASS=
+export DBHOST=
+export DBUSER=
+export DBPSWD=
+export DBPORT=
+export DB=
+export RECAPTCHA2_PUBLIC_KEY=
+export RECAPTCHA2_PRIVATE_KEY=
+export ZAP_URL=
